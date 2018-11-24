@@ -1,0 +1,13 @@
+#下面都只是我利用scrapy shell测试时候顺带记录的，可以参考下
+
+漫画第一页：http://comic.kukudm.com/comictype/3_1.htm
+漫画第二页：http://comic.kukudm.com/comictype/3_2.htm
+
+获取第一页所有漫画链接：response.xpath('//dd/a[2]').extract()
+漫画名字：response.xpath('//dd/a[2]/text()').extract()
+漫画链接：response.xpath('//dd/a[2]/@href').extract()
+
+获取到总页数：response.xpath('//tr[@align="center"]/td/text()')[-3].re('分 (\d+) 页 每')[0]
+获取下一页：response.xpath('//tr[@align="center"]/td/a[contains(text(),"下一页")]/@href').extract()[0]
+
+获取具体漫画中下一页：response.xpath('//img[@src="/images/d.gif"]/../@href').extract()

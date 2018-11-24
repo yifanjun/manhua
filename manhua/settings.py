@@ -18,7 +18,8 @@ NEWSPIDER_MODULE = 'manhua.spiders'
 ROBOTSTXT_OBEY = False
 #需要pipelines
 ITEM_PIPELINES = {
-    'manhua.pipelines.ManhuaPipeline': 1,
+    # 'manhua.pipelines.ManhuaPipeline': 1,
+    'manhua.pipelines.ManhuaPipeline2':10,
 }
 #存储路径
 IMAGES_STORE='F:/转生史莱姆'

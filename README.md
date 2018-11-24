@@ -5,3 +5,9 @@ cd scrapy_kukudm
 cd manhua  
 scrapy crawl comic  
 博客地址：https://blog.csdn.net/zyf2333/article/details/84405034  
+
+-----------更新------------  
+依据kukudm.py的思路，爬取了所有的日本动漫，只需要运行
+scrapy crawl comic2即可  
+且kukudm2.py比kukudm.py简洁了一些  
+关于items.py、pipelines.py的修改请看代码部分的注释

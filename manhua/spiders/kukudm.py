@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#这个代码是实现某单个漫画的爬取
 import scrapy
 import re
 from manhua.items import ManhuaItem
@@ -24,7 +25,6 @@ class KukudmSpider(scrapy.Spider):
     #解析response，获取每个大章节图片链接地址
     def parse1(self, response):
         hxs=Selector(response)
-        items=[]
         #章节链接地址
         urls=response.xpath('//dd/a[1]/@href').extract()
         #获取所有的章节名
@@ -34,17 +34,16 @@ class KukudmSpider(scrapy.Spider):
             item=ManhuaItem()
             item['link_url']=self.server_link+urls[index]
             item['dir_name']=dir_names[index]
-            items.append(item)
-        #根据每个章节的连接，发送request请求，并传递item参数
-        for item in items:
             yield scrapy.Request(url=item['link_url'],meta={'item':item},callback=self.parse2)
 
     #解析一个章节的第一页的页码数和图片链接
     def parse2(self, response):
         #接收传递的item
         item=response.meta['item']
+        print(item)
         #下面一句不能少，是用来更新要解析的章节链接
         item['link_url'] = response.url
+        print(item)
         hxs=Selector(response)
         #获取章节第一页图片的链接
         pre_img_url=hxs.xpath('//script/text()').extract()
